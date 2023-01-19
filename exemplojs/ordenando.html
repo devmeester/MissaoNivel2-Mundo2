@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenando - Jscript</title>
+
+fuyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyfljdf78-0=95eeeeeeeee\\\\\\\\9uerjh;[plcér]lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllfccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccl78-0=]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+</head>
+<body>
+
+    <div class="container-sm">
+        <span class="m-2">
+            <h1>Ordenando Valores</h1>
+        </span>
+
+        <form>
+            <div class="mb-3">
+                <label for="valor" class="form-label">Valor</label>
+                <input type="number" class="form-control" id="valor" aria-describedby="valor">
+                <div id="valor" class="form-text"></div>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="add()">Adicionar</button>
+
+            <hr />
+
+            <div class="mb-3">
+                <select id="escolha" class="form-select" aria-label="Select function">
+                    <option selected>Qual algoritmo pretende aplicar?</option>
+                    <option value="1">Swap</option>
+                    <option value="2">Bubble Sort</option>
+                    <option value="3">Selection Sort</option>
+                    <option value="4">Quick Sort</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="ordenar()">Ordenar</button>
+            <button type="submit" class="btn btn-primary" onclick="misturar()">Misturar</button>
+
+            <hr />
+        </form>
+
+        <div>
+            <ul id="list"></ul>
+        </div>
+
+    </div>
+
+    <script src="ordenando.js" defer></script>
+
+    <script>
+
+        const lista = document.getElementById("list");
+
+
+
+
+        function add() {
+            event.preventDefault();
+
+            let item = document.getElementById("valor").value;
+            let newLi = document.createElement("li");
+            newLi.textContent = item;
+            lista.appendChild(newLi);
+
+        };
+
+        function ordenar() {
+            event.preventDefault();
+            let listaInt = [];
+            let children = lista.children;
+
+
+            for (let i = 0; i < children.length; i++) {
+                const value = parseInt(children[i].textContent, 10);
+                listaInt.push(value);
+            }
+
+            let escolha = document.querySelector("#escolha").value;
+
+            switch (escolha) {
+                case '1':
+                    var x,y;
+
+                    x = prompt("Posição do primeiro número: ");
+                    y = prompt("Posição do segundo número: ");
+
+                    var resultado = swap(listaInt, x, y)
+                    var stringArray = resultado.map(n => `<li>${n}</li>`);
+                    var html = stringArray.reduce((acc, curr) => acc + curr, '');
+
+                    document.getElementById('list').innerHTML = html;
+                    break;
+                case '2':
+                    var resultado = bubble_sort(listaInt)
+                    var stringArray = resultado.map(n => `<li>${n}</li>`);
+                    var html = stringArray.reduce((acc, curr) => acc + curr, '');
+
+                    document.getElementById('list').innerHTML = html;
+                    break;   
+                case '3':
+                    var resultado = selection_sort(listaInt)
+                    var stringArray = resultado.map(n => `<li>${n}</li>`);
+                    var html = stringArray.reduce((acc, curr) => acc + curr, '');
+
+                    document.getElementById('list').innerHTML = html;
+                    break;  
+                case '4':
+                    var x,y;
+
+                    x = prompt("Posição inicial: ");
+                    y = prompt("Posição final: ");
+
+                    var resultado = swap(listaInt, x, y)
+                    var stringArray = resultado.map(n => `<li>${n}</li>`);
+                    var html = stringArray.reduce((acc, curr) => acc + curr, '');
+
+                    document.getElementById('list').innerHTML = html;
+                    break;
+            }
+
+        };
+
+        function misturar() {
+            event.preventDefault();
+
+            let listaInt = [];
+            let children = lista.children;
+
+
+            for (let i = 0; i < children.length; i++) {
+                const value = parseInt(children[i].textContent, 10);
+                listaInt.push(value);
+            }
+
+            var x;
+            x = prompt("Quantidade de trocas: ");
+
+            var resultado = shuffle(listaInt, x)
+            const stringArray = resultado.map(n => `<li>${n}</li>`);
+
+            const html = stringArray.reduce((acc, curr) => acc + curr, '');
+
+            document.getElementById('list').innerHTML = html;
+
+        };
+
+    </script>
+
+</body>
+</html>
